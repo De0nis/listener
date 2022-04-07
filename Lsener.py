@@ -19,7 +19,7 @@ class Interface(QWidget):
     def initUI(self):
         self.clbl = QLabel(self)
         self.clbl.move(40,0)
-        self.clbl.setText('Type   local_Adress Outer_Adress  Status  PID Prog_name Session_name  Session_num  Memory_us
+        self.clbl.setText('Type   local_Adress Outer_Adress  Status  PID Prog_name Session_name  Session_num  Memory_used')
         self.grid = QGridLayout()
         self.addComponents()
         layoutH = QHBoxLayout()  
