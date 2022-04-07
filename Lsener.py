@@ -1,11 +1,9 @@
-﻿"""
+"""
 Need to install PyQt5 
 this program will show you all open porst and program, who opend them
 """ 
-
 import sys,subprocess
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QApplication,QFileDialog,QLabel,QRadioButton,QGridLayout,QWidget,QVBoxLayout,QScrollArea,QHBoxLayout
-from PyQt5 import QtCore 
+from PyQt5.QtWidgets import  QApplication,QLabel,QRadioButton,QGridLayout,QWidget,QVBoxLayout,QScrollArea,QHBoxLayout
 import socket
 #visualisation module
 resulttablemas = []
