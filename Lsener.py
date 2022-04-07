@@ -99,7 +99,8 @@ class maintable(Interface):
                     resulttable.append(conn[i]+tas[j])
         for k in range(len(resulttable)):
              resulttable[k].pop(6)
-             #resulttable[k].pop(-1)
+             resulttable[k].insert(8,(resulttable[k][8])+(resulttable[k].pop(9))+(resulttable[k].pop(-1)))
+             resulttable[k].pop(-1)
         return resulttable
     
 
