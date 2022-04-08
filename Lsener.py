@@ -42,19 +42,39 @@ class Interface(QWidget):
         self.show()
     def btnstate(self):
         button = self.sender().text()
-        z = (button.split())
-        zm = z[1].replace(",", '')
-        zo = zm.replace("'", '')
-        zt = zo.split(':')
-        if ((zt[0]=='0.0.0.0') or (zt[0]=='[')):
-            zt[0]='127.0.0.1'
-        print(zt[0])
+        zt = Interface.sendlerconvert(button)
+        ipaddr = Interface.ipaddrconvert(zt)
+        
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         addrr='127.0.0.1', int(zt[1])
         s.bind(addrr)
         conn, addr = s.accept()
         print ('connected:', addr)
         conn.close()
+    def sendlerconvert(button):
+        z = (button.split())
+        zm = z[1].replace(",",'')
+        zo = zm.replace("'",'')
+        zt = zo.split(':')
+        return zt
+    def ipaddrconvert(zt):
+        if (zt[0] == '0.0.0.0'):
+             zt[0] = '127.0.0.0'
+        if ( zt[0] == '[fe80'):
+            ztp = str(zt[6:])
+            ipaddr = Interface.ztcut(ztp, zt)
+        if (str(zt[0:2]) == "['[', '']"):    
+            ztp = str(zt[3:])
+            ipaddr = Interface.ztcut(ztp,zt)
+        ipaddr = (str(zt[0]), int(zt[1]))  
+        return ipaddr
+    def ztcut(ztp, zt):
+            zw = ztp.replace("'",'')
+            zf = zw.replace("[",'')
+            zt[1] = zf.replace("]",'')
+            zt[0] = '127.0.0.1'
+            ipaddr = (str(zt[0]),int(zt[1]))
+            return ipaddr
 #Data structuring module
 class maintable(Interface):
     def __init__(self):
